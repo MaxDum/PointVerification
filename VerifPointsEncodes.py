@@ -25,6 +25,7 @@ encoded_file = "Encoded Sample - NOK.xlsx"   # file returned from proeco
 encoded_name_column = "B" # column in wich the code must search after de names or ID's
 encoded_points_column = "G" # column in wich the code must search after de points of the student
 
+allowedNonPoints = ["PP", "PR", "Z", "CM", "V", "ML", "FR", "SO", "D"] # sometimes instead of numbers, you can have these letters with a special meaning
 
 
 class Student(object):
@@ -32,9 +33,25 @@ class Student(object):
         self.name = name
         self.orginal_points = original_points
         self.encoded_points = encoded_points
+        
     
-    def check(self):
-        return abs(self.orginal_points-self.encoded_points) <= 0.05
+    def check(self): # check the different cases (float or str) and check if they are the same.
+        # Return True is both are the same, else return False
+        try:
+            float(self.orginal_points)
+            try:
+                float(self.encoded_points)
+                return abs(self.orginal_points-self.encoded_points) <= 0.05
+            except ValueError:
+                return False # original is a number but not encoded
+            
+        except ValueError: # in the case it's not a float the juste check if the letters are the same
+            try:
+                float(self.encoded_points)
+                return False # original is a str but not encoded
+            except ValueError:
+                return self.orginal_points.upper() == self.encoded_points.upper()
+        
 
     def __str__(self):
         return ("{0} \t original : {1} \t encoded : {2}").format(self.name, self.orginal_points, self.encoded_points)
@@ -78,7 +95,10 @@ class Students(object): # list of students
                     if name != '':
                         values[name] = value
                 except ValueError:
-                    pass
+                    if value in allowedNonPoints:
+                        values[name] = value
+                    else:
+                        pass
         return values
 
     def load_original(self):
