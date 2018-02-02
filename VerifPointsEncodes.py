@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """
 Small program to check if the points of the original Exell file are the same ase the encoded one.
 For this, you need to specify the orginal file name (the one you made before encoding it) with the column letter for the name (or ID) of the student and the column letter of the points.
