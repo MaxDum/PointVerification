@@ -36,7 +36,7 @@ class Student(object):
         self.encoded_points = encoded_points
     
     def check(self):
-        return abs(self.orginal_points-self.encoded_points) <= 0.05
+        return abs(self.orginal_points-self.encoded_points) <= 0.05001
 
     def __str__(self):
         return ("{0} \t original : {1} \t encoded : {2}").format(self.name, self.orginal_points, self.encoded_points)
