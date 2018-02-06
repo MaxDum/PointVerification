@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """
 Small program to check if the points of the original Exell file are the same ase the encoded one.
 For this, you need to specify the orginal file name (the one you made before encoding it) with the column letter for the name (or ID) of the student and the column letter of the points.
@@ -35,6 +37,7 @@ class Student(object):
         self.encoded_points = encoded_points
         
     
+<<<<<<< HEAD
     def check(self): # check the different cases (float or str) and check if they are the same.
         # Return True is both are the same, else return False
         try:
@@ -52,6 +55,10 @@ class Student(object):
             except ValueError:
                 return self.orginal_points.upper() == self.encoded_points.upper()
         
+=======
+    def check(self):
+        return abs(self.orginal_points-self.encoded_points) <= 0.05001
+>>>>>>> origin/master
 
     def __str__(self):
         return ("{0} \t original : {1} \t encoded : {2}").format(self.name, self.orginal_points, self.encoded_points)
