@@ -36,15 +36,13 @@ class Student(object):
         self.orginal_points = original_points
         self.encoded_points = encoded_points
         
-    
-<<<<<<< HEAD
     def check(self): # check the different cases (float or str) and check if they are the same.
         # Return True is both are the same, else return False
         try:
             float(self.orginal_points)
             try:
                 float(self.encoded_points)
-                return abs(self.orginal_points-self.encoded_points) <= 0.05
+                return abs(self.orginal_points-self.encoded_points) <= 0.05001
             except ValueError:
                 return False # original is a number but not encoded
             
@@ -54,11 +52,6 @@ class Student(object):
                 return False # original is a str but not encoded
             except ValueError:
                 return self.orginal_points.upper() == self.encoded_points.upper()
-        
-=======
-    def check(self):
-        return abs(self.orginal_points-self.encoded_points) <= 0.05001
->>>>>>> origin/master
 
     def __str__(self):
         return ("{0} \t original : {1} \t encoded : {2}").format(self.name, self.orginal_points, self.encoded_points)
